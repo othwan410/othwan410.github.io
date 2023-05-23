@@ -31,7 +31,7 @@ ex) 'abc' => 'babc'
 그러나, 구현하려던 중 정렬부분에 대해 계속 신경이 쓰여 정렬하는 메소드가 있을 거 같아서 찾아보니 sort라는 메소드를 알게되었다.  
 그리하여 아래와 같은 코드를 작성하게 됐다.
   
-function solution(strings, n) {  
+    function solution(strings, n) {  
       
     for(let i = 0;i < strings.length;i++){  
         strings[i] = strings[i][n] + strings[i]  
@@ -42,7 +42,7 @@ function solution(strings, n) {
     }  
       
     return strings;  
-}  
+    }  
   
 #배운점  
   
