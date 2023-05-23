@@ -33,15 +33,15 @@ ex) 'abc' => 'babc'
   
     function solution(strings, n) {  
       
-    for(let i = 0;i < strings.length;i++){  
-        strings[i] = strings[i][n] + strings[i]  
-    }  
-    strings.sort();  
-    for(let i = 0;i < strings.length;i++){  
-        strings[i] = strings[i].slice(1,strings[i].length + 1);  
-    }  
+      for(let i = 0;i < strings.length;i++){  
+          strings[i] = strings[i][n] + strings[i]  
+      }  
+      strings.sort();  
+      for(let i = 0;i < strings.length;i++){  
+          strings[i] = strings[i].slice(1,strings[i].length + 1);  
+      }  
       
-    return strings;  
+      return strings;  
     }  
   
 #배운점  
@@ -58,7 +58,7 @@ repalce('str1','str2')은 문자열에서 str1을 찾아 처음으로 발견한 
   
 하지만 또 다른 풀이를 보고서는 많이 놀랐다.  
   
-return strings.sort((s1, s2) => s1[n] === s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n]));  
+    return strings.sort((s1, s2) => s1[n] === s2[n] ? s1.localeCompare(s2) : s1[n].localeCompare(s2[n]));  
   
 내가 쓴 코드를 삼항 연산자와 화살표 함수를 통해 간단하게 쓸 수 있다는 걸 배웠다.  
   
