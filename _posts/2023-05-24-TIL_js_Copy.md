@@ -7,29 +7,29 @@ title:  "얕은 복사? 깊은 복사?"
 
 가장 아래의 코드가 실행 되었을 때, “Passed ~” 가 출력되도록 getAge 함수를 채워주세요  
   
-    var user = {
+  var user = {
     name: "john",
     age: 20,
-}
-
-var getAged = function (user, passedTime) {
+  }
+    
+  var getAged = function (user, passedTime) {
   // !!!!!!!!여기를 입력!!!!!!!
-}
-
-
-var agedUser = getAged(user, 6);
-
-var agedUserMustBeDifferentFromUser = function (user1, user2) {
-    if (!user2) {
-		    console.log("Failed! user2 doesn't exist!");
-	} else if (user1 !== user2) { 
+  }
+    
+    
+  var agedUser = getAged(user, 6);
+    
+  var agedUserMustBeDifferentFromUser = function (user1, user2) {
+      if (!user2) {
+        console.log("Failed! user2 doesn't exist!");
+      } else if (user1 !== user2) { 
         console.log("Passed! If you become older, you will be different from you in the past!");
-    } else {
+      } else {
         console.log("Failed! User same with past one");
+      }
     }
-}
-
-    agedUserMustBeDifferentFromUser(user, agedUser);
+  agedUserMustBeDifferentFromUser(user, agedUser);
+  
   
 # 문제점  
   
@@ -49,26 +49,27 @@ getAged(user, 6)이 실행되고, agedUserMustBeDifferentFromUser에 파라미�
 나는 이 둘 중 얕은 복사를 활용해서 풀었다. 문제의 user 객체를 보면 안에 새로운 객체가 없기 때문에 깊은 복사를 활용하지 않아도 문제를 풀 수 있어 보였기 때문이다.
 
 얕은 복사  
-    let copyObject = function (target){
-    var result = {};
-
-
+  let copyObject = function (target){
+  var result = {};
+        
     for(var prop in target){
-        result[prop] = target[prop];
+      result[prop] = target[prop];
     }
-    return result;
-    }
+  return result;
+  }
+  
   
 깊은 복사  
-    let copyObject2 = function (target){
+  let copyObject2 = function (target){
     var result = {};
-
+    
     if(typeof target === 'object' && target !== null){
-        for(var prop in target){
-            result[prop] = copyObject2(target[prop]);
-        }
-    }else{
-        result = target;
+      for(var prop in target){
+        result[prop] = copyObject2(target[prop]);
+      }
+    } 
+    else{
+      result = target;
     }
     
     return result;
@@ -79,39 +80,39 @@ getAged(user, 6)이 실행되고, agedUserMustBeDifferentFromUser에 파라미�
 그리고 문제 해결 방법을 적용한 코드가 아래이다.  
   
     var getAged = function (user, passedTime) {
-    var result = {};
+      var result = {};
 
-    for(var prop in user){
+      for(var prop in user){
             result[prop] = user[prop];
     }
     
     result.age += passedTime
     return result;
-}
-
-var agedUser = getAged(user, 6);
-
-var agedUserMustBeDifferentFromUser = function (user1, user2) {
-    if (!user2) {
-		    console.log("Failed! user2 doesn't exist!");
-	} else if (user1 !== user2) { 
-        console.log("Passed! If you become older, you will be different from you in the past!");
-    } else {
-        console.log("Failed! User same with past one");
     }
-}
 
-    agedUserMustBeDifferentFromUser(user, agedUser);
+  var agedUser = getAged(user, 6);
+
+  var agedUserMustBeDifferentFromUser = function (user1, user2) {
+      if (!user2) {
+		      console.log("Failed! user2 doesn't exist!");
+	  } else if (user1 !== user2) { 
+         console.log("Passed! If you become older, you will be different from you in the past!");
+     } else {
+         console.log("Failed! User same with past one");
+     }
+  }
+
+  agedUserMustBeDifferentFromUser(user, agedUser);
   
 결과는 잘나오지만 문제 설정이 조금은 오류가 있어 그런지 조금은 찜찜해서 문제 코드를 아래처럼 조금 수정했다.  
     var agedUserMustBeDifferentFromUser = function (user1, user2) {
-    if (!user2) {
-		    console.log("Failed! user2 doesn't exist!");
-	} else if (user1 !== user2 && user1.name === user2.name && user1.age !== user2.age) { 
-        console.log("Passed! If you become older, you will be different from you in the past!");
-    } else {
-        console.log("Failed! User same with past one");
-    }
+      if (!user2) {
+		     console.log("Failed! user2 doesn't exist!");
+	    } else if (user1 !== user2 && user1.name === user2.name && user1.age !== user2.age) { 
+         console.log("Passed! If you become older, you will be different from you in the past!");
+      } else {
+         console.log("Failed! User same with past one");
+      }
     }
   
 else if 부분에 이름과 age를 비교하게 바꿔주어 좀 더 원하는 게 명확해질 수 있도록 바꿔주었다.
