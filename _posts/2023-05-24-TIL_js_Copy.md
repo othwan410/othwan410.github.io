@@ -7,7 +7,7 @@ title:  "얕은 복사? 깊은 복사?"
 
 가장 아래의 코드가 실행 되었을 때, “Passed ~” 가 출력되도록 getAge 함수를 채워주세요  
   
-  var user = {
+    var user = {
     name: "john",
     age: 20,
 }
